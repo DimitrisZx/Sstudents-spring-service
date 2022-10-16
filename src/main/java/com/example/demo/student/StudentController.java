@@ -16,6 +16,10 @@ public class StudentController {
 
     }
 
+    @DeleteMapping(path = "{studentId}")
+    public void deleteStudent(@PathVariable("studentId") Long id) {
+        this.studentService.deleteStudent(id);
+    }
     @PostMapping
     public void registerStudent(@RequestBody Student student) {
         this.studentService.addNewStudent(student);
@@ -24,5 +28,10 @@ public class StudentController {
     @GetMapping
     public List<Student> getStudents() {
         return studentService.getStudents();
+    }
+
+    @PutMapping(path = "{studentId}")
+    public void updateStudent(@PathVariable("studentId") Long studentId, @RequestParam(required = false) String name, @RequestParam(required = false) String email) {
+        studentService.updateStudent(studentId, name, email);
     }
 }
